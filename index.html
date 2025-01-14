@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Short Polling Example</title>
+</head>
+
+<body>
+
+    <h1>Short Polling Example</h1>
+    <div id="data-container"></div>
+
+</body>
+
+<script>
+    async function getData() {
+        try {
+            const response = await fetch('/get-data');
+            const result = await response.json();
+            document.getElementById('data-container').innerHTML = result.data;
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+
+    function shortPolling() {
+        setInterval(() => {
+            getData();
+        }, 5000);
+    }
+
+    shortPolling();
+
+</script>
+
+</html>
